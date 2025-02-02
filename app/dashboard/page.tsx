@@ -590,10 +590,16 @@ const AdminPanel: React.FC = () => {
   const [editProductData, setEditProductData] = useState<Partial<Product>>({});
   const [imageFile, setImageFile] = useState<File | null>(null);
 
-  const handleOrderClick = (order: Order) => {
-    setSelectedOrderDetails(order);
-    setIsModalOpen(true);
-  };
+  // const handleOrderClick = (order: Order) => {
+  //   setSelectedOrderDetails(order);
+  //   setIsModalOpen(true);
+  // };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+const handleOrderClick = (order: Order) => {
+  setSelectedOrderDetails(order);
+  setIsModalOpen(true);
+};
 
 
 
@@ -643,7 +649,7 @@ const AdminPanel: React.FC = () => {
     fetchOrders();
   }, []);
 
-  const fetchProducts = async () => {
+  const fetchProducts =  async () => {
     const query = `*[_type == "product"]`;
     const data = await client.fetch<Product[]>(query);
     setProducts(data);
@@ -807,17 +813,17 @@ const AdminPanel: React.FC = () => {
               {/* Order Status Filters */}
               <div className="p-4 border-b border-gray-200 flex gap-2">
                 {["all", "pending", "dispatch", "success"].map((status) => (
-                  <button
-                    key={status}
-                    className={`px-4 py-2 rounded-full capitalize ${
-                      orderStatusFilter === status
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
-                    onClick={() => setOrderStatusFilter(status as any)}
-                  >
-                    {status}
-                  </button>
+               <button
+               key={status}
+               className={`px-4 py-2 rounded-full capitalize ${
+                 orderStatusFilter === status
+                   ? "bg-blue-500 text-white"
+                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+               }`}
+               onClick={() => setOrderStatusFilter(status as "all" | "pending" | "dispatch" | "success")}
+             >
+               {status}
+             </button>
                 ))}
               </div>
 
