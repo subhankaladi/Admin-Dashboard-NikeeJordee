@@ -521,6 +521,8 @@ import { client } from "@/sanity/lib/client";
 import Swal from "sweetalert2";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 // TypeScript Interfaces
 interface Product {
@@ -580,9 +582,9 @@ const AdminPanel: React.FC = () => {
     totalCustomers: 0,
     pendingDeliveries: 0,
   });
+  const router = useRouter();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedOrderDetails, setSelectedOrderDetails] =
+
     useState<Order | null>(null);
   const [editProductId, setEditProductId] = useState<string | null>(null);
   const [editProductData, setEditProductData] = useState<Partial<Product>>({});
@@ -593,9 +595,7 @@ const AdminPanel: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+
 
   const handleEditProduct = (product: Product) => {
     setEditProductId(product._id);
@@ -741,6 +741,12 @@ const AdminPanel: React.FC = () => {
     }
   };
 
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn"); // Clear login status
+    router.push("/"); // Redirect to login page or home page
+  };
+
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50">
@@ -770,9 +776,8 @@ const AdminPanel: React.FC = () => {
     
     <button
       className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-      onClick={() => {
-        /* Add logout logic */
-      }}
+      onClick={handleLogout}
+
     >
       Logout
     </button>
@@ -1122,3 +1127,11 @@ const AdminPanel: React.FC = () => {
 };
 
 export default AdminPanel;
+function setIsModalOpen(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
+
+function setSelectedOrderDetails(order: Order) {
+  throw new Error("Function not implemented.");
+}
+
