@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (!isLoggedIn) {
-      router.push("/admin"); // Redirect to login page if not authenticated
+      router.push("/"); // Redirect to login page if not authenticated
     }
   }, [router]);
 
