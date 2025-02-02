@@ -569,6 +569,8 @@ interface Order {
   cartItems: CartItem[];
 }
 const AdminPanel: React.FC = () => {
+  const [, setSelectedOrderDetails] = useState<Order | null>(null);
+  const [, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"orders" | "products">("orders");
   const [orderStatusFilter, setOrderStatusFilter] = useState<
     "all" | "success" | "pending" | "dispatch"
@@ -1133,11 +1135,11 @@ const handleOrderClick = (order: Order) => {
 };
 
 export default AdminPanel;
-function setIsModalOpen(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
+// function setIsModalOpen(arg0: boolean) {
+//   throw new Error("Function not implemented.");
+// }
 
-function setSelectedOrderDetails(order: Order) {
-  throw new Error("Function not implemented.");
-}
+// function setSelectedOrderDetails(order: Order) {
+//   throw new Error("Function not implemented.");
+// }
 
